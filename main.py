@@ -1,22 +1,10 @@
-{
-            "question": "4. Sie wollen mit einem zum Straßenverkehr zugelassenen Gabelstapler mit einer Höchstgeschwindigkeit von 18 km/h und einem zulässigenОшибка `SyntaxError: unterminated string literal` означает, что текстовая строка в коде не была закрыта кавычкой до перехода на новую строку. Это произошло из-за обрыва текста в середине вопроса.
-
-Ниже приведен чистый код без обрывов.
-
-### Инструкция по исправлению:
-1. Откройте файл `main.py` в вашем репозитории на GitHub.
-2. Нажмите на иконку карандаша (**Edit this file**).
-3. **Полностью удалите** всё текущее содержимое.
-4. Вставьте код, приведенный ниже, и нажмите **Commit changes**.
-
-```python
 import streamlit as st
 
 st.set_page_config(
     page_title="Gabelstapler - Variante 1", page_icon="🚜", layout="centered"
 )
 
-RAW_IMG_URL = "[https://raw.githubusercontent.com/suvorovbm1990-netizen/gabelstapler-variante-1/main/](https://raw.githubusercontent.com/suvorovbm1990-netizen/gabelstapler-variante-1/main/)"
+RAW_IMG_URL = "https://raw.githubusercontent.com/suvorovbm1990-netizen/gabelstapler-variante-1/main/"
 
 if "quiz_data" not in st.session_state:
     st.session_state.quiz_data = [
@@ -150,4 +138,185 @@ if "quiz_data" not in st.session_state:
             ]
         },
         {
-            "question": "12
+            "question": "12. Welche Aussagen ueber das Eigengewicht eines Gabelstaplers sind richtig?",
+            "choices": [
+                "a) Das Eigengewicht ist das Gewicht eines Gabelstaplers ohne Nutzlast;",
+                "b) Das Eigengewicht ist das gleiche wie das zulaessige Gesamtgewicht;",
+                "c) Desto hoeher das Eigengewicht ist, desto mehr Last kann aufgenommen werden;",
+                "d) Das Eigengewicht braucht vom Fahrer nicht beachtet zu werden."
+            ],
+            "correct": [
+                "a) Das Eigengewicht ist das Gewicht eines Gabelstaplers ohne Nutzlast;",
+                "c) Desto hoeher das Eigengewicht ist, desto mehr Last kann aufgenommen werden;"
+            ]
+        },
+        {
+            "question": "13. Bei welcher Lastaufnahme besteht fuer die Last erhoehte Kippgefahr?",
+            "image": RAW_IMG_URL + "q13_forks.jpg",
+            "choices": [
+                "a) Option a (Schmale Gabelstellung)",
+                "b) Option b (Breite Gabelstellung)",
+                "c) Option c (Ungleichmaessige Gabelstellung)"
+            ],
+            "correct": [
+                "a) Option a (Schmale Gabelstellung)",
+                "c) Option c (Ungleichmaessige Gabelstellung)"
+            ]
+        },
+        {
+            "question": "14. Eine beladene Palette, mit den Massen 800 x 1200 mm, wiegt 1200 kg. Sie soll in ein Hochregal auf einem Fachboden in 4,5 m Hoehe gelagert werden. Ist das mit diesem Gabelstapler moeglich?",
+            "image": RAW_IMG_URL + "q14_diagram.jpg",
+            "choices": [
+                "a) Nein, maximale Hoehe sind 4 m;",
+                "b) Ja, ohne Einschraenkungen, die max. Stapelfaehigkeit ist 1600 kg;",
+                "c) Nein, das Hoechstgewicht bei 4,5 m betraegt 680 kg;",
+                "d) Nein, Paletten duerfen nur bis max. 4 m Hoehe gestapelt werden;",
+                "e) Ja, die Palette muss aber quer aufgenommen werden."
+            ],
+            "correct": ["e) Ja, die Palette muss aber quer aufgenommen werden."]
+        },
+        {
+            "question": "15. Was muessen Sie bei der Verwendung von Anbaugeraeten an Ihrem Gabelstapler beachten?",
+            "choices": [
+                "a) Die Resttragfaehigkeit darf nicht ueberschritten werden;",
+                "b) Die Nenntragfaehigkeit des Gabelstaplers wird ueberlastet;",
+                "c) Die Hubgenauigkeit wird durch das groessere Gewicht eingeschraenkt;",
+                "d) Anbaugeraete muessen durch rot-weisse Streifen markiert werden;",
+                "e) Anbaugeraete duerfen nur bestimmungsgemaess verwendet werden."
+            ],
+            "correct": [
+                "a) Die Resttragfaehigkeit darf nicht ueberschritten werden;",
+                "e) Anbaugeraete duerfen nur bestimmungsgemaess verwendet werden."
+            ]
+        },
+        {
+            "question": "16. Wann ist die Kippgefahr bei Gabelstaplern besonders gross?",
+            "choices": [
+                "a) Gabelstapler koennen nicht umkippen;",
+                "b) Die Kippgefahr ist besonders gross bei Kurvenfahrt und im Gefaelle;",
+                "c) Die Kippgefahr ist besonders gross bei schlechter Sicht nach vorne;",
+                "d) Die Kippgefahr ist besonders gross, wenn die hoechstzulaessige Belastung ueberschritten wird;",
+                "e) Die Kippgefahr ist besonders gross beim Bremsen und bei hochgefahrenem Hubgeruest."
+            ],
+            "correct": [
+                "b) Die Kippgefahr ist besonders gross bei Kurvenfahrt und im Gefaelle;",
+                "d) Die Kippgefahr ist besonders gross, wenn die hoechstzulaessige Belastung ueberschritten wird;",
+                "e) Die Kippgefahr ist besonders gross beim Bremsen und bei hochgefahrenem Hubgeruest."
+            ]
+        },
+        {
+            "question": "17. Wie oft und von wem wird die Feststell- und Betriebsbremse ueberprueft?",
+            "choices": [
+                "a) Woechentlich durch den Sicherheitsingenieur;",
+                "b) Monatlich durch den Bremsenhersteller;",
+                "c) Taeglich durch den Meister (nach Arbeitsbeginn);",
+                "d) Taeglich durch den Fahrer (bei Arbeitsbeginn)."
+            ],
+            "correct": ["d) Taeglich durch den Fahrer (bei Arbeitsbeginn)."]
+        },
+        {
+            "question": "18. Welche Flurfoerderzeuge duerfen in explosionsgefaehrdeten Bereichen fahren?",
+            "choices": [
+                "a) Nur Fahrzeuge mit Gasbetrieb;",
+                "b) Nur besonders zugelassene und gekennzeichnete Fahrzeuge (explosionsgeschuetztes Fahrzeug);",
+                "c) Nur mit einer roten Warnfarbe gestrichene und mit einer gelben Rundumleuchte ausgestattete Fahrzeuge;",
+                "d) Es gibt keine besonderen Bestimmungen;",
+                "e) Nur Geraete mit Ottomotoren."
+            ],
+            "correct": ["b) Nur besonders zugelassene und gekennzeichnete Fahrzeuge (explosionsgeschuetztes Fahrzeug);"]
+        },
+        {
+            "question": "19. Womit koennen Sie Ihre Berechtigung zum selbstaendigen Steuern eines Gabelstaplers im Unternehmen nachweisen?",
+            "choices": [
+                "a) Mit dem Fuehrerschein Klasse L;",
+                "b) Es ist kein Nachweis erforderlich;",
+                "c) Fahrausweis fuer Gabelstapler;",
+                "d) Durch die schriftliche Beauftragung des Arbeitgebers;",
+                "e) Zeugnis der letzten Arbeitsstelle."
+            ],
+            "correct": [
+                "c) Fahrausweis fuer Gabelstapler;",
+                "d) Durch die schriftliche Beauftragung des Arbeitgebers;"
+            ]
+        },
+        {
+            "question": "20. Welcher Gabelstapler faehrt falsch in einer Steigung bzw. in einem Gefaelle?",
+            "image": RAW_IMG_URL + "q20_steigung.jpg",
+            "choices": [
+                "a) Stapler a",
+                "b) Stapler b",
+                "c) Stapler c",
+                "d) Stapler d"
+            ],
+            "correct": ["b) Stapler b", "c) Stapler c"]
+        }
+    ]
+
+if "current_index" not in st.session_state:
+    st.session_state.current_index = 0
+if "score" not in st.session_state:
+    st.session_state.score = 0
+if "submitted" not in st.session_state:
+    st.session_state.submitted = False
+
+st.title("🚜 Gabelstapler Prüfung - Variante 1")
+
+total_q = len(st.session_state.quiz_data)
+curr_i = st.session_state.current_index
+
+if curr_i < total_q:
+    q_data = st.session_state.quiz_data[curr_i]
+    st.caption(f"Frage {curr_i + 1} von {total_q}")
+    st.subheader(q_data["question"])
+
+    if "image" in q_data:
+        st.image(q_data["image"], use_column_width=True)
+
+    is_multiselect = len(q_data["correct"]) > 1
+
+    if is_multiselect:
+        st.info("💡 Hinweis: Mehrere Antworten können richtig sein.")
+        user_choices = []
+        for choice in q_data["choices"]:
+            if st.checkbox(choice, key=f"q_{curr_i}_{choice}"):
+                user_choices.append(choice)
+    else:
+        user_selection = st.radio(
+            "Wählen Sie eine Antwort:",
+            q_data["choices"],
+            index=None,
+            key=f"q_{curr_i}_radio",
+        )
+        user_choices = [user_selection] if user_selection else []
+
+    if not st.session_state.submitted:
+        if st.button("Antworten", type="primary"):
+            if not user_choices:
+                st.warning("Bitte wählen Sie mindestens eine Antwort aus.")
+            else:
+                st.session_state.submitted = True
+                if sorted(user_choices) == sorted(q_data["correct"]):
+                    st.session_state.score += 1
+                st.rerun()
+    else:
+        if sorted(user_choices) == sorted(q_data["correct"]):
+            st.success("🟢 Richtig!")
+        else:
+            st.error("🔴 Falsch!")
+            st.write("**Richtige Antwort(en):**")
+            for ans in q_data["correct"]:
+                st.write(f"- {ans}")
+
+        if st.button("Nächste Frage ➡️"):
+            st.session_state.current_index += 1
+            st.session_state.submitted = False
+            st.rerun()
+else:
+    st.balloons()
+    st.success("🎉 Test abgeschlossen!")
+    st.write(f"### Ihr Ergebnis: **{st.session_state.score} / {total_q}**")
+    if st.button("Test neustarten"):
+        st.session_state.current_index = 0
+        st.session_state.score = 0
+        st.session_state.submitted = False
+        st.rerun()
