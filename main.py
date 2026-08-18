@@ -3,7 +3,79 @@ import streamlit as st
 # Настройка страницы
 st.set_page_config(page_title="Gabelstapler - Variante 1", page_icon="🚜", layout="centered")
 
-# Инициализация вопросов (Variante 1, вопросы 1-20)
+# Базовый URL для загрузки изображений из вашего репозитория GitHub
+RAW_IMG_URL = "https://raw.githubusercontent.com/suvorovbm1990-netizen/gabelstapler-variante-1/main/"
+
+# Полная база данных (все 20 вопросов)
+if "quiz_data" not in st.session_state:
+    st.session_state.quiz_data = [
+        {
+            "question": "1. Worauf müssen Sie beim Tanken eines Diesel-Gabelstaplers achten?",
+            "choices": [
+                "a) Dem Diesel muss Motoröl im Verhältnis 1 : 25 beigemischt werden;",
+                "b) Motor abstellen, striktes Rauchverbot;",
+                "c) Die richtige Oktanzahl muss beachtet werden;",
+                "d) Batterienstecker ziehen;",
+                "e) Es darf nur bleifrei getankt werden."
+            ],
+            "correct": ["b) Motor abstellen, striktes Rauchverbot;"]
+        },
+        {
+            "question": "2. Der Fahrer möchte mit den Gabelzinken zwischen der unteren und oberen Box einfahren. Wie beurteilen Sie seinen Versuch?",
+            "image": RAW_IMG_URL + "q2_einfahren.jpg",
+            "choices": [
+                "a) Der Fahrer macht seine Sache gut;",
+                "b) Das Hubgerüst müsste senkrecht stehen, damit die Zinken nicht an der unteren Box hängen bleiben;",
+                "c) Das Hubgerüst muss beim Einfahren immer nach vorn geneigt sein;",
+                "d) Das Hubgerüst muss immer zurückgeneigt sein beim Einfahren zwischen unterer und oberer Box."
+            ],
+            "correct": ["b) Das Hubgerüst müsste senkrecht stehen, damit die Zinken nicht an der unteren Box hängen bleiben;"]
+        },
+        {
+            "question": "3. Worauf müssen Sie achten, wenn Sie Lasten mit unterschiedlichen Ausmaßen und Gewichten transportieren wollen?",
+            "choices": [
+                "a) Auf gar nichts, wenn der Gabelstapler groß genug ist;",
+                "b) Ich muss immer eine Sackkarre zur Hand haben;",
+                "c) Ich muss die Gabelbreite dem jeweiligen Transportgut anpassen;",
+                "d) Gabelstapler sind nur für bestimmte Lasten zugelassen."
+            ],
+            "correct": [
+                "c) Ich muss die Gabelbreite dem jeweiligen Transportgut anpassen;",
+                "d) Gabelstapler sind nur für bestimmte Lasten zugelassen."
+            ]
+        },
+        {
+            "question": "4. Sie wollen mit einem zum Straßenverkehr zugelassenen Gabelstapler mit einer Höchstgeschwindigkeit von 18 km/h und einem zulässigenВот полный готовый файл `main.py` для Streamlit, в котором собраны **все 20 вопросов** с вариантами ответов, правильными ключами и подключением всех изображений.
+
+---
+
+### Шаг 1. Названия картинок для загрузки на GitHub
+
+Загрузите в ваш репозиторий GitHub файлы картинок со следующими именами:
+
+1. `q2_einfahren.jpg` — въезд вилами между ящиками (вопрос №2)
+2. `q5_personen.jpg` — человек на вилах (вопрос №5)
+3. `q8_schwerpunkt.jpg` — наклон мачты и центр тяжести (вопрос №8)
+4. `q13_forks.jpg` — положения вил a, b, c (вопрос №13)
+5. `q14_diagram.jpg` — диаграмма грузоподъемности (вопрос №14)
+6. `q20_steigung.jpg` — погрузчики на уклоне a, b, c, d (вопрос №20)
+
+---
+
+### Шаг 2. Полный код `main.py`
+
+Замените содержимое файла `main.py` на этот код:
+
+```python
+import streamlit as st
+
+# Настройка страницы
+st.set_page_config(page_title="Gabelstapler - Variante 1", page_icon="🚜", layout="centered")
+
+# Базовый URL для загрузки изображений из вашего репозитория GitHub
+RAW_IMG_URL = "[https://raw.githubusercontent.com/suvorovbm1990-netizen/gabelstapler-variante-1/main/](https://raw.githubusercontent.com/suvorovbm1990-netizen/gabelstapler-variante-1/main/)"
+
+# База данных всех 20 вопросов
 if "quiz_data" not in st.session_state:
     st.session_state.quiz_data = [
         {
@@ -19,6 +91,7 @@ if "quiz_data" not in st.session_state:
         },
         {
             "question": "2. Der Fahrer moechte mit den Gabelzinken zwischen der unteren und oberen Box einfahren. Wie beurteilen Sie seinen Versuch?",
+            "image": RAW_IMG_URL + "q2_einfahren.jpg",
             "choices": [
                 "a) Der Fahrer macht seine Sache gut;",
                 "b) Das Hubgeruest muesste senkrecht stehen, damit die Zinken nicht an der unteren Box haengen bleiben;",
@@ -52,6 +125,7 @@ if "quiz_data" not in st.session_state:
         },
         {
             "question": "5. Duerfen auf der Gabel eines Gabelstaplers Personen mitgenommen werden?",
+            "image": RAW_IMG_URL + "q5_personen.jpg",
             "choices": [
                 "a) Ja, wenn eine stabile Ladung befoerdert wird, die festgehalten werden muss;",
                 "b) Ja, wenn nicht schneller als 8 km/h und mit besonderer Vorsicht gefahren wird;",
@@ -84,6 +158,7 @@ if "quiz_data" not in st.session_state:
         },
         {
             "question": "8. Welche Aussagen treffen fuer das linke der beiden nachfolgenden Bilder im Vergleich zum rechten Bild zu?",
+            "image": RAW_IMG_URL + "q8_schwerpunkt.jpg",
             "choices": [
                 "a) Die Kippgefahr des Gabelstaplers hat sich durch das Neigen des Hubgeruestes erhoeht;",
                 "b) Der Gesamtschwerpunkt hat sich durch das Neigen des Hubgeruestes veraendert;",
@@ -147,6 +222,7 @@ if "quiz_data" not in st.session_state:
         },
         {
             "question": "13. Bei welcher Lastaufnahme besteht fuer die Last erhoehte Kippgefahr?",
+            "image": RAW_IMG_URL + "q13_forks.jpg",
             "choices": [
                 "a) Option a (Schmale Gabelstellung)",
                 "b) Option b (Breite Gabelstellung)",
@@ -159,6 +235,7 @@ if "quiz_data" not in st.session_state:
         },
         {
             "question": "14. Eine beladene Palette, mit den Massen 800 x 1200 mm, wiegt 1200 kg. Sie soll in ein Hochregal auf einem Fachboden in 4,5 m Hoehe gelagert werden. Ist das mit diesem Gabelstapler moeglich?",
+            "image": RAW_IMG_URL + "q14_diagram.jpg",
             "choices": [
                 "a) Nein, maximale Hoehe sind 4 m;",
                 "b) Ja, ohne Einschraenkungen, die max. Stapelfaehigkeit ist 1600 kg;",
@@ -234,6 +311,7 @@ if "quiz_data" not in st.session_state:
         },
         {
             "question": "20. Welcher Gabelstapler faehrt falsch in einer Steigung bzw. in einem Gefaelle?",
+            "image": RAW_IMG_URL + "q20_steigung.jpg",
             "choices": [
                 "a) Stapler a",
                 "b) Stapler b",
@@ -247,7 +325,7 @@ if "quiz_data" not in st.session_state:
         }
     ]
 
-# Инициализация состояния теста
+# Инициализация состояния сессии
 if "current_index" not in st.session_state:
     st.session_state.current_index = 0
 if "score" not in st.session_state:
@@ -264,6 +342,10 @@ if curr_i < total_q:
     q_data = st.session_state.quiz_data[curr_i]
     st.caption(f"Frage {curr_i + 1} von {total_q}")
     st.subheader(q_data["question"])
+
+    # Вывод картинки, если она есть для данного вопроса
+    if "image" in q_data:
+        st.image(q_data["image"], use_column_width=True)
 
     is_multiselect = len(q_data["correct"]) > 1
 
