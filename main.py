@@ -1,53 +1,9 @@
 import streamlit as st
-import random
 
 # Настройка страницы
 st.set_page_config(page_title="Gabelstapler - Variante 1", page_icon="🚜", layout="centered")
 
-# Полная база данных вопросов из листочков (Variante 1)
-if "quiz_data" not in st.session_state:
-    st.session_state.quiz_data = [
-        {
-            "question": "1. Worauf müssen Sie beim Tanken eines Diesel-Gabelstaplers achten?",
-            "choices": [
-                "a) Dem Diesel muss Motoröl im Verhältnis 1 : 25 beigemischt werden;",
-                "b) Motor abstellen, striktes Rauchverbot;",
-                "c) Die richtige Oktanzahl muss beachtet werden;",
-                "d) Batterienstecker ziehen;",
-                "e) Es darf nur bleifrei getankt werden."
-            ],
-            "correct": ["b) Motor abstellen, striktes Rauchverbot;"]
-        },
-        {
-            "question": "2. Der Fahrer möchte mit den Gabelzinken zwischen der unteren und oberen Box einfahren. Wie beurteilen Sie seinen Versuch?",
-            "choices": [
-                "a) Der Fahrer macht seine Sache gut;",
-                "b) Das Hubgerüst müsste senkrecht stehen, damit die Zinken nicht an der unteren Box hängen bleiben;",
-                "c) Das Hubgerüst muss beim Einfahren immer nach vorn geneigt sein;",
-                "d) Das Hubgerüst muss immer zurückgeneigt sein beim Einfahren zwischen unterer und oberer Box."
-            ],
-            "correct": ["b) Das Hubgerüst müsste senkrecht stehen, damit die Zinken nicht an der unteren Box hängen bleiben;"]
-        },
-        {
-            "question": "3. Worauf müssen Sie achten, wenn Sie Lasten mit unterschiedlichen Ausmaßen und Gewichten transportieren wollen?",
-            "choices": [
-                "a) Auf gar nichts, wenn der Gabelstapler groß genug ist;",
-                "b) Ich muss immer eine Sackkarre zur Hand haben;",
-                "c) Ich muss die Gabelbreite dem jeweiligen Transportgut anpassen;",
-                "d) Gabelstapler sind nur für bestimmte Lasten zugelassen."
-            ],
-            "correct": [
-                "c) Ich muss die Gabelbreite dem jeweiligen Transportgut anpassen;",
-                "d) Gabelstapler sind nur für bestimmte Lasten zugelassen."
-            ]
-        },
-        {
-            "question": "4. Sie wollen mit einem zum Straßenverkehr zugelassenem Gabelstapler mit einer Höchstgeschwindigkeit von 18 km/h und einem zulässigen Gesamtgewicht von 4 Tonnen auf öffentlichen Straßen fahren. Welche FahrerlaubГотовый блок Python-кода с вопросами с 1 по 20 из ваших документов. Отметки крестиками (х) учтены как правильные ответы.
-
-Скопируйте этот блок целиком и замените им секцию `st.session_state.quiz_data` в файле `main.py`:
-
-```python
-# БАЗА ДАННЫХ ВОПРОСОВ (Variante 1, Fragen 1-20)
+# Инициализация вопросов (Variante 1, вопросы 1-20)
 if "quiz_data" not in st.session_state:
     st.session_state.quiz_data = [
         {
@@ -290,3 +246,65 @@ if "quiz_data" not in st.session_state:
             ]
         }
     ]
+
+# Инициализация состояния теста
+if "current_index" not in st.session_state:
+    st.session_state.current_index = 0
+if "score" not in st.session_state:
+    st.session_state.score = 0
+if "submitted" not in st.session_state:
+    st.session_state.submitted = False
+
+st.title("🚜 Gabelstapler Prüfung - Variante 1")
+
+total_q = len(st.session_state.quiz_data)
+curr_i = st.session_state.current_index
+
+if curr_i < total_q:
+    q_data = st.session_state.quiz_data[curr_i]
+    st.caption(f"Frage {curr_i + 1} von {total_q}")
+    st.subheader(q_data["question"])
+
+    is_multiselect = len(q_data["correct"]) > 1
+
+    if is_multiselect:
+        st.info("💡 Hinweis: Mehrere Antworten können richtig sein.")
+        user_choices = []
+        for choice in q_data["choices"]:
+            if st.checkbox(choice, key=f"q_{curr_i}_{choice}"):
+                user_choices.append(choice)
+    else:
+        user_selection = st.radio("Wählen Sie eine Antwort:", q_data["choices"], index=None, key=f"q_{curr_i}_radio")
+        user_choices = [user_selection] if user_selection else []
+
+    if not st.session_state.submitted:
+        if st.button("Antworten", type="primary"):
+            if not user_choices:
+                st.warning("Bitte wählen Sie mindestens eine Antwort aus.")
+            else:
+                st.session_state.submitted = True
+                if sorted(user_choices) == sorted(q_data["correct"]):
+                    st.session_state.score += 1
+                st.rerun()
+    else:
+        if sorted(user_choices) == sorted(q_data["correct"]):
+            st.success("🟢 Richtig!")
+        else:
+            st.error("🔴 Falsch!")
+            st.write("**Richtige Antwort(en):**")
+            for ans in q_data["correct"]:
+                st.write(f"- {ans}")
+
+        if st.button("Nächste Frage ➡️"):
+            st.session_state.current_index += 1
+            st.session_state.submitted = False
+            st.rerun()
+else:
+    st.balloons()
+    st.success("🎉 Test abgeschlossen!")
+    st.write(f"### Ihr Ergebnis: **{st.session_state.score} / {total_q}**")
+    if st.button("Test neustarten"):
+        st.session_state.current_index = 0
+        st.session_state.score = 0
+        st.session_state.submitted = False
+        st.rerun()
