@@ -270,7 +270,7 @@ if curr_i < total_q:
     st.subheader(q_data["question"])
 
     if "image" in q_data:
-        st.image(q_data["image"], use_column_width=True)
+        st.image(q_data["image"], use_container_width=True)
 
     is_multiselect = len(q_data["correct"]) > 1
 
