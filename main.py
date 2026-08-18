@@ -470,3 +470,96 @@ if "quiz_data" not in st.session_state:
         },
         {
             "question": "19. Womit koennen Sie Ihre Berechtigung zum selbstaendigen Steuern eines Gabelstaplers im Unternehmen nachweisen?",
+            "choices": [
+                "a) Mit dem Fuehrerschein Klasse L;",
+                "b) Es ist kein Nachweis erforderlich;",
+                "c) Fahrausweis fuer Gabelstapler;",
+                "d) Durch die schriftliche Beauftragung des Arbeitgebers;",
+                "e) Zeugnis der letzten Arbeitsstelle.",
+            ],
+            "correct": [
+                "c) Fahrausweis fuer Gabelstapler;",
+                "d) Durch die schriftliche Beauftragung des Arbeitgebers;",
+            ],
+        },
+        {
+            "question": "20. Welcher Gabelstapler faehrt falsch in einer Steigung bzw. in einem Gefaelle?",
+            "image": RAW_IMG_URL + "q20_steigung.jpg",
+            "choices": [
+                "a) Stapler a",
+                "b) Stapler b",
+                "c) Stapler c",
+                "d) Stapler d",
+            ],
+            "correct": ["b) Stapler b", "c) Stapler c"],
+        },
+    ]
+
+if "current_index" not in st.session_state:
+    st.session_state.current_index = 0
+if "score" not in st.session_state:
+    st.session_state.score = 0
+if "submitted" not in st.session_state:
+    st.session_state.submitted = False
+
+st.title("🚜 Gabelstapler Prüfung - Variante 1")
+
+total_q = len(st.session_state.quiz_data)
+curr_i = st.session_state.current_index
+
+if curr_i < total_q:
+    q_data = st.session_state.quiz_data[curr_i]
+    st.caption(f"Frage {curr_i + 1} von {total_q}")
+    st.subheader(q_data["question"])
+
+    if "image" in q_data:
+        st.image(q_data["image"], use_column_width=True)
+
+    is_multiselect = len(q_data["correct"]) > 1
+
+    if is_multiselect:
+        st.info("💡 Hinweis: Mehrere Antworten können richtig sein.")
+        user_choices = []
+        for choice in q_data["choices"]:
+            if st.checkbox(choice, key=f"q_{curr_i}_{choice}"):
+                user_choices.append(choice)
+    else:
+        user_selection = st.radio(
+            "Wählen Sie eine Antwort:",
+            q_data["choices"],
+            index=None,
+            key=f"q_{curr_i}_radio",
+        )
+        user_choices = [user_selection] if user_selection else []
+
+    if not st.session_state.submitted:
+        if st.button("Antworten", type="primary"):
+            if not user_choices:
+                st.warning("Bitte wählen Sie mindestens eine Antwort aus.")
+            else:
+                st.session_state.submitted = True
+                if sorted(user_choices) == sorted(q_data["correct"]):
+                    st.session_state.score += 1
+                st.rerun()
+    else:
+        if sorted(user_choices) == sorted(q_data["correct"]):
+            st.success("🟢 Richtig!")
+        else:
+            st.error("🔴 Falsch!")
+            st.write("**Richtige Antwort(en):**")
+            for ans in q_data["correct"]:
+                st.write(f"- {ans}")
+
+        if st.button("Nächste Frage ➡️"):
+            st.session_state.current_index += 1
+            st.session_state.submitted = False
+            st.rerun()
+else:
+    st.balloons()
+    st.success("🎉 Test abgeschlossen!")
+    st.write(f"### Ihr Ergebnis: **{st.session_state.score} / {total_q}**")
+    if st.button("Test neustarten"):
+        st.session_state.current_index = 0
+        st.session_state.score = 0
+        st.session_state.submitted = False
+        st.rerun()
